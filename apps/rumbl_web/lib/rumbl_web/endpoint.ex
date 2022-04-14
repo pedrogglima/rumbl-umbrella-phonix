@@ -1,13 +1,17 @@
 defmodule RumblWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :rumbl_web
 
+  socket "/socket", RumblWeb.UserSocket,
+    websocket: true,
+    longpoll: false
+
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_rumbl_web_key",
-    signing_salt: "7jE3uLGG"
+    key: "_rumbl_key",
+    signing_salt: "i91Ibi9/"
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
@@ -28,7 +32,7 @@ defmodule RumblWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :rumbl_web
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :rumbl
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,

@@ -11,9 +11,12 @@ defmodule RumblWeb.Application do
       # Start the Telemetry supervisor
       RumblWeb.Telemetry,
       # Start the Endpoint (http/https)
-      RumblWeb.Endpoint
+      RumblWeb.Endpoint,
       # Start a worker by calling: RumblWeb.Worker.start_link(arg)
       # {RumblWeb.Worker, arg}
+      {Phoenix.PubSub, name: RumblWeb.PubSub},
+      RumblWeb.Presence,
+
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
