@@ -1,5 +1,13 @@
 import Config
 
+wolfram_app_id =
+  System.get_env("WOLFRAM_APP_ID") || "6P89JV-4X8KY3RYH4" ||
+    raise """
+    environment variable WOLFRAM_APP_ID is missing.
+    """
+
+config :info_sys, :wolfram, app_id: wolfram_app_id
+
 # Configure your database
 config :rumbl, Rumbl.Repo,
   username: "postgres",
